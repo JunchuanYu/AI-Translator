@@ -1,3 +1,4 @@
 model_choice,from_text,output,flag,username,timestamp
 Chinese to English,我认为这个模型可以更好的解决过拟合问题,,,,2023-02-24 01:48:48.958441
 Chinese to English,我认为这个模型可以更好的解决过拟合问题,,,,2023-02-24 01:49:09.601692
+English to Chinese,"Usage of gradio.inputs is deprecated, and will not be supported in the future, please import your component from gradio.components","使用 priio. inputs 的用法已折旧, 将来不会得到支持, 请从 gradio 导入您的组件 。",,,2023-02-26 10:44:41.049356
