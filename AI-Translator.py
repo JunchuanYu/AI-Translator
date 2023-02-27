@@ -13,6 +13,7 @@
 # !python -m spacy download en
 # !pip install gradio
 # !pip install transformers
+# !pip install errant
 
 # %% [markdown]
 # import depandancies
@@ -30,6 +31,7 @@ spacy.load('en')
 # define api for translation and grama check
 
 # %%
+
 def extract_str(text):
     text=str(text)
     start = text.find("{'")
@@ -37,6 +39,7 @@ def extract_str(text):
     return text[start+2:end]
     
 def gramacorrect(sentence):
+    gf = Gramformer(models=1, use_gpu=False)
     res = gf.correct(sentence) # Gramformer correct
     return extract_str(res) # Return first value in res array
 
@@ -62,13 +65,17 @@ def generator(from_text):
 
 with gr.Blocks() as demo:
     with gr.Tab("Translator"):
-        gr.Markdown("English to Chinese.")
+        gr.Markdown("""
+                    #### English to Chinese.
+                    """)
 
         with gr.Row():
             text_input1 = gr.Textbox(lines=4, placeholder="Enter sentence here...")
             chinese = gr.Textbox(lines=4, placeholder="Chinese")
         zh_button = gr.Button("RUN")
-        gr.Markdown("Chinese to English.")
+        gr.Markdown("""
+                    #### Chinese to English.
+                    """)
 
         with gr.Row():
             text_input2 = gr.Textbox(lines=4, placeholder="Enter sentence here...")
@@ -76,14 +83,17 @@ with gr.Blocks() as demo:
         en_button = gr.Button("RUN")            
     
     with gr.Tab("Gramachecker"):
-        gr.Markdown("English grama checker.")
-
+        gr.Markdown("""
+                    #### English grama checker.
+                    """)
         with gr.Row():
             text_input3 = gr.Textbox(lines=4, placeholder="Enter sentence here...")
             check = gr.Textbox(lines=4, placeholder="Grama Check")
         check_button = gr.Button("RUN")
 
-        gr.Markdown("English text generator.")
+        gr.Markdown("""
+                    #### English text generator.
+                    """)
         with gr.Row():
             text_input4 = gr.Textbox(lines=2, placeholder="Enter sentence here...")
             txtgenerator = gr.Textbox(lines=6, placeholder="Text Generator")
@@ -96,7 +106,7 @@ with gr.Blocks() as demo:
     
     check_button.click(gramacorrect, inputs=text_input3, outputs=check)
     gen_button.click(generator, inputs=text_input4, outputs=txtgenerator)
-demo.launch(share=True)
+demo.launch()
 
 
 # %%
