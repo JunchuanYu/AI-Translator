@@ -1,6 +1,7 @@
 # AI-Translator
 
-Build an online translation and grammar checking app with huggingface api.
+Build an online translation and grammar checking APP based on the Transformer model.
+
 APP link: https://junchuanyu-tools.hf.space/
 
 ## Model
